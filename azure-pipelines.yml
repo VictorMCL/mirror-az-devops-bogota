@@ -29,3 +29,7 @@ steps:
         destinationGitRepositoryPersonalAccessToken: '$(pat_repo_a)'
     - script: ls -la
       displayName: 'listar'
+    - script: sudo rm -r $(Build.Repository.Name)*
+      displayName: 'borrar'
+    - script: ls -la
+      displayName: 'listar2'
