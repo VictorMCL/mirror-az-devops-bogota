@@ -1,0 +1,31 @@
+trigger:
+  - main
+  - develop
+  - feature/*
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - group: SBGA0047-SSS-Smart-Supervision
+
+parameters:
+  - name: destinationGitRepositoryMap
+    type: object
+    default:
+      repo1: 'https://github.com/VictorMCL/mirror-az-devops2.git'
+
+steps:
+  - script: |
+      echo "Hello world"
+    displayName: 'test variables'
+  - ${{each repo in parameters.destinationGitRepositoryMap}}:
+    - task: mirror-git-repository-vsts-task@1
+      displayName: 'mirror git ${{repo.key}}'
+      enabled: true
+      inputs:
+        sourceGitRepositoryUri: '$(System.CollectionUri)Projects/_git/$(Build.Repository.Name)'
+        destinationGitRepositoryUri: ${{repo.value}}
+        destinationGitRepositoryPersonalAccessToken: '$(pat_repo_a)'
+    - script: ls -la
+      displayName: 'listar'
