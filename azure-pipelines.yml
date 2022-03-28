@@ -13,8 +13,7 @@ parameters:
   - name: destinationGitRepositoryMap
     type: object
     default:
-      repo1: 'https://github.com/VictorMCL/mirror-az-devops.git'
-      repo2: 'https://github.com/VictorMCL/mirror-az-devops2.git'
+      repo1: 'https://github.com/VictorMCL/mirror-az-devops-bogota.git'
 
 steps:
   - script: |
